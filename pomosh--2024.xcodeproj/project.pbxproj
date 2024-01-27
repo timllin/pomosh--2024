@@ -13,6 +13,15 @@
 		CA37BE6B2B6006A5008AD5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA37BE692B6006A5008AD5E3 /* Main.storyboard */; };
 		CA37BE6D2B6006A7008AD5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA37BE6C2B6006A7008AD5E3 /* Assets.xcassets */; };
 		CA37BE702B6006A7008AD5E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA37BE6E2B6006A7008AD5E3 /* LaunchScreen.storyboard */; };
+		CA37BE792B6009B8008AD5E3 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = CA37BE782B6009B8008AD5E3 /* Apollo */; };
+		CA37BE7B2B6009B8008AD5E3 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CA37BE7A2B6009B8008AD5E3 /* ApolloWebSocket */; };
+		CA37BE802B60130D008AD5E3 /* PomochAPI in Frameworks */ = {isa = PBXBuildFile; productRef = CA37BE7F2B60130D008AD5E3 /* PomochAPI */; };
+		CA37BE822B60132A008AD5E3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA37BE812B60132A008AD5E3 /* Network.swift */; };
+		CA37BE842B6013F5008AD5E3 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA37BE832B6013F5008AD5E3 /* MainViewModel.swift */; };
+		CA37BE892B6019D3008AD5E3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA37BE882B6019D3008AD5E3 /* MainView.swift */; };
+		CA37BE8B2B601C5F008AD5E3 /* WardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA37BE8A2B601C5F008AD5E3 /* WardCell.swift */; };
+		CAB739232B6291E100C2F44B /* Ward.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB739222B6291E100C2F44B /* Ward.swift */; };
+		CAB739282B62B5FC00C2F44B /* WardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB739272B62B5FC00C2F44B /* WardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,13 @@
 		CA37BE6C2B6006A7008AD5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA37BE6F2B6006A7008AD5E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA37BE712B6006A7008AD5E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA37BE7D2B6012CB008AD5E3 /* PomochAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PomochAPI; sourceTree = "<group>"; };
+		CA37BE812B60132A008AD5E3 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		CA37BE832B6013F5008AD5E3 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CA37BE882B6019D3008AD5E3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		CA37BE8A2B601C5F008AD5E3 /* WardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardCell.swift; sourceTree = "<group>"; };
+		CAB739222B6291E100C2F44B /* Ward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ward.swift; sourceTree = "<group>"; };
+		CAB739272B62B5FC00C2F44B /* WardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +47,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA37BE802B60130D008AD5E3 /* PomochAPI in Frameworks */,
+				CA37BE792B6009B8008AD5E3 /* Apollo in Frameworks */,
+				CA37BE7B2B6009B8008AD5E3 /* ApolloWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +59,10 @@
 		CA37BE572B6006A5008AD5E3 = {
 			isa = PBXGroup;
 			children = (
+				CA37BE7C2B6012CB008AD5E3 /* Packages */,
 				CA37BE622B6006A5008AD5E3 /* pomosh--2024 */,
 				CA37BE612B6006A5008AD5E3 /* Products */,
+				CA37BE7E2B60130D008AD5E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +77,84 @@
 		CA37BE622B6006A5008AD5E3 /* pomosh--2024 */ = {
 			isa = PBXGroup;
 			children = (
+				CAB739262B62B5DA00C2F44B /* WardModule */,
+				CAB739242B62B47000C2F44B /* WardTableModule */,
 				CA37BE632B6006A5008AD5E3 /* AppDelegate.swift */,
 				CA37BE652B6006A5008AD5E3 /* SceneDelegate.swift */,
-				CA37BE672B6006A5008AD5E3 /* ViewController.swift */,
 				CA37BE692B6006A5008AD5E3 /* Main.storyboard */,
 				CA37BE6C2B6006A7008AD5E3 /* Assets.xcassets */,
 				CA37BE6E2B6006A7008AD5E3 /* LaunchScreen.storyboard */,
 				CA37BE712B6006A7008AD5E3 /* Info.plist */,
 			);
 			path = "pomosh--2024";
+			sourceTree = "<group>";
+		};
+		CA37BE7C2B6012CB008AD5E3 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				CA37BE7D2B6012CB008AD5E3 /* PomochAPI */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		CA37BE7E2B60130D008AD5E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA37BE852B601711008AD5E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA37BE862B60171A008AD5E3 /* Network */,
+				CAB739222B6291E100C2F44B /* Ward.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA37BE862B60171A008AD5E3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CA37BE812B60132A008AD5E3 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CA37BE872B6019C2008AD5E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA37BE672B6006A5008AD5E3 /* ViewController.swift */,
+				CA37BE882B6019D3008AD5E3 /* MainView.swift */,
+				CA37BE8A2B601C5F008AD5E3 /* WardCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAB739242B62B47000C2F44B /* WardTableModule */ = {
+			isa = PBXGroup;
+			children = (
+				CAB739252B62B48900C2F44B /* ViewModel */,
+				CA37BE852B601711008AD5E3 /* Model */,
+				CA37BE872B6019C2008AD5E3 /* View */,
+			);
+			path = WardTableModule;
+			sourceTree = "<group>";
+		};
+		CAB739252B62B48900C2F44B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA37BE832B6013F5008AD5E3 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CAB739262B62B5DA00C2F44B /* WardModule */ = {
+			isa = PBXGroup;
+			children = (
+				CAB739272B62B5FC00C2F44B /* WardViewController.swift */,
+			);
+			path = WardModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +173,11 @@
 			dependencies = (
 			);
 			name = "pomosh--2024";
+			packageProductDependencies = (
+				CA37BE782B6009B8008AD5E3 /* Apollo */,
+				CA37BE7A2B6009B8008AD5E3 /* ApolloWebSocket */,
+				CA37BE7F2B60130D008AD5E3 /* PomochAPI */,
+			);
 			productName = "pomosh--2024";
 			productReference = CA37BE602B6006A5008AD5E3 /* pomosh--2024.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +206,9 @@
 				Base,
 			);
 			mainGroup = CA37BE572B6006A5008AD5E3;
+			packageReferences = (
+				CA37BE772B6009B8008AD5E3 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			productRefGroup = CA37BE612B6006A5008AD5E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +236,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA37BE8B2B601C5F008AD5E3 /* WardCell.swift in Sources */,
+				CA37BE842B6013F5008AD5E3 /* MainViewModel.swift in Sources */,
+				CA37BE892B6019D3008AD5E3 /* MainView.swift in Sources */,
+				CAB739232B6291E100C2F44B /* Ward.swift in Sources */,
 				CA37BE682B6006A5008AD5E3 /* ViewController.swift in Sources */,
+				CAB739282B62B5FC00C2F44B /* WardViewController.swift in Sources */,
 				CA37BE642B6006A5008AD5E3 /* AppDelegate.swift in Sources */,
+				CA37BE822B60132A008AD5E3 /* Network.swift in Sources */,
 				CA37BE662B6006A5008AD5E3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +462,34 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA37BE772B6009B8008AD5E3 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA37BE782B6009B8008AD5E3 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA37BE772B6009B8008AD5E3 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		CA37BE7A2B6009B8008AD5E3 /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA37BE772B6009B8008AD5E3 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
+		};
+		CA37BE7F2B60130D008AD5E3 /* PomochAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PomochAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA37BE582B6006A5008AD5E3 /* Project object */;
 }
