@@ -25,7 +25,6 @@ class WardViewController: UIViewController {
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 16
         return imageView
     }()
 

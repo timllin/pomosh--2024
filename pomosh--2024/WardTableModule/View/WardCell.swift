@@ -37,10 +37,6 @@ class WardCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func prepareForReuse() {
-        #function
-    }
-
     private func setup() {
         addSubview(wardPhotoView)
         addSubview(displayNameLabel)

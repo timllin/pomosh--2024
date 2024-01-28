@@ -1,0 +1,8 @@
+query Test($order: [WardSortInput!]) {
+    wards(order: $order) {
+        edges {
+            cursor
+        }
+	totalCount
+    }
+}

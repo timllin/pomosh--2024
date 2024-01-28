@@ -1,0 +1,8 @@
+query WardsEdges {
+    wards {
+        edges {
+            cursor
+        }
+	totalCount
+    }
+}

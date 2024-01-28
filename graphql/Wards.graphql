@@ -1,0 +1,26 @@
+query Wards($after: String, $before: String) {
+    wards(after: $after, before: $before) {
+        totalCount
+        pageInfo {
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+        edges {
+            cursor
+        }
+        nodes {
+            id
+            publicInformation {
+                photo {
+                    url(asAttachment: false)
+                }
+                name {
+                    displayName
+                }
+            }
+        }
+    }
+}
+
