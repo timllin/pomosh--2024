@@ -15,8 +15,8 @@ final class MainViewModel {
     private(set) var wards: [Ward]
     private(set) var cachedImages: [String: UIImage]
 
-    let isPaging: Bool
-    var cursorHandler: CursorHandler?
+    public let isPaging: Bool
+    public var cursorHandler: CursorHandler?
 
 
     init(wardsIds: [PomochAPI.ID] = [PomochAPI.ID](), wards: [Ward] = [Ward](),
@@ -27,6 +27,7 @@ final class MainViewModel {
 
         self.isPaging = isPaging
     }
+
 
     private func loadWardsIds(completion: @escaping ([PomochAPI.ID], Error?) -> Void) {
         Network.shared.apollo.fetch(query: WardsIdsQuery()) {result in
@@ -64,7 +65,7 @@ final class MainViewModel {
         loadWardsIds() {[weak self] response, error in
             guard let self = self else {return}
             self.wardsIds = response
-            loadWardsById(wardsIds: Array(self.wardsIds.prefix(1))) {state, error in
+            loadWardsById(wardsIds: wardsIds) {state, error in
                 self.wards.sort {$0.getDisplayName() < $1.getDisplayName()}
                 state ? completion?(true) : completion?(false)
             }
@@ -81,7 +82,7 @@ final class MainViewModel {
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {return}
-            DispatchQueue.global().async() { [weak self] in
+            DispatchQueue.main.async() { [weak self] in
                 guard let newImage = UIImage(data: data) else {return}
                 self?.cachedImages[ward.getId()] = newImage
                 completion(.success(newImage))
@@ -93,7 +94,7 @@ final class MainViewModel {
 // MARK: Pagination logic
 extension MainViewModel {
     private func fetchCursors(completion: @escaping (Int, [String]) -> Void) {
-        Network.shared.apollo.fetch(query: WardsEdgesQuery()) { result in
+        Network.shared.apollo.fetch(query: WardsEdgesQuery(order: GraphQLConst.order)) { result in
             switch result {
             case .success(let graphQLResult):
                 guard let totalCount = graphQLResult.data?.wards?.totalCount,
@@ -108,7 +109,8 @@ extension MainViewModel {
     private func fetchStartWards(completion: @escaping () -> Void) {
         guard let beforeCursor = self.cursorHandler?.beforeCursor else {return}
         Network.shared.apollo.fetch(query: WardsQuery(after: GraphQLNullable.null,
-                                                      before: GraphQLNullable.init(stringLiteral: beforeCursor))) { [weak self] result in
+                                                      before: GraphQLNullable.init(stringLiteral: beforeCursor),
+                                                      order: GraphQLConst.order)) { [weak self] result in
             switch result {
             case .success(let graphQLResult):
                 self?.processWardsFetch(graphQLResult: graphQLResult)
@@ -141,11 +143,12 @@ extension MainViewModel {
     }
 
     public func loadWardsWindow(completion: @escaping (Bool) -> Void) {
-        guard let cursorHandler = cursorHandler else {return}
+        guard let cursorHandler = cursorHandler, cursorHandler.hasNextPage == true else {return}
 
         if cursorHandler.hasNextPage && !cursorHandler.isLastPage {
             Network.shared.apollo.fetch(query: WardsQuery(after: GraphQLNullable.init(stringLiteral: cursorHandler.afterCursor),
-                                                          before: GraphQLNullable.init(stringLiteral: cursorHandler.beforeCursor))) { [weak self] result in
+                                                          before: GraphQLNullable.init(stringLiteral: cursorHandler.beforeCursor),
+                                                          order: GraphQLConst.order)) { [weak self] result in
                 switch result {
                 case .success(let graphQLResult):
                     self?.processWardsFetch(graphQLResult: graphQLResult)
@@ -156,7 +159,8 @@ extension MainViewModel {
             }
         } else if cursorHandler.isLastPage {
             Network.shared.apollo.fetch(query: WardsQuery(after: GraphQLNullable.init(stringLiteral: cursorHandler.afterCursor),
-                                                          before: GraphQLNullable.null)) {[weak self] result in
+                                                          before: GraphQLNullable.null,
+                                                          order: GraphQLConst.order)) {[weak self] result in
                 switch result {
                 case .success(let graphQLResult):
                     self?.processWardsFetch(graphQLResult: graphQLResult)
@@ -166,5 +170,12 @@ extension MainViewModel {
                 }
             }
         }
+    }
+}
+
+
+extension MainViewModel {
+    struct GraphQLConst {
+        static let order: GraphQLNullable<[WardSortInput]> = GraphQLNullable.some([WardSortInput(publicInformation: GraphQLNullable.some(.init(name: GraphQLNullable.some(.init(displayName: GraphQLNullable.some(GraphQLEnum.init(rawValue: SortEnumType.asc.rawValue)))))))])
     }
 }

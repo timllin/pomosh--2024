@@ -1,5 +1,5 @@
-query WardsEdges {
-    wards {
+query WardsEdges($order: [WardSortInput!]) {
+    wards(order: $order) {
         edges {
             cursor
         }

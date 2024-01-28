@@ -7,10 +7,16 @@ public class WardsEdgesQuery: GraphQLQuery {
   public static let operationName: String = "WardsEdges"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query WardsEdges { wards { __typename edges { __typename cursor } totalCount } }"#
+      #"query WardsEdges($order: [WardSortInput!]) { wards(order: $order) { __typename edges { __typename cursor } totalCount } }"#
     ))
 
-  public init() {}
+  public var order: GraphQLNullable<[WardSortInput]>
+
+  public init(order: GraphQLNullable<[WardSortInput]>) {
+    self.order = order
+  }
+
+  public var __variables: Variables? { ["order": order] }
 
   public struct Data: PomochAPI.SelectionSet {
     public let __data: DataDict
@@ -18,7 +24,7 @@ public class WardsEdgesQuery: GraphQLQuery {
 
     public static var __parentType: ApolloAPI.ParentType { PomochAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("wards", Wards?.self),
+      .field("wards", Wards?.self, arguments: ["order": .variable("order")]),
     ] }
 
     /// Подопечные

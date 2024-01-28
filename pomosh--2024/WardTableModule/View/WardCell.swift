@@ -53,4 +53,10 @@ class WardCell: UITableViewCell {
         displayNameLabel.text = ward.getDisplayName()
         wardPhotoView.image = image
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        displayNameLabel.text = nil
+        wardPhotoView.image = nil
+    }
 }

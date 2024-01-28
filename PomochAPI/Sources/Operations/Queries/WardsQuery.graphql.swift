@@ -7,23 +7,27 @@ public class WardsQuery: GraphQLQuery {
   public static let operationName: String = "Wards"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query Wards($after: String, $before: String) { wards(after: $after, before: $before) { __typename totalCount pageInfo { __typename endCursor hasNextPage hasPreviousPage startCursor } edges { __typename cursor } nodes { __typename id publicInformation { __typename photo { __typename url(asAttachment: false) } name { __typename displayName } } } } }"#
+      #"query Wards($after: String, $before: String, $order: [WardSortInput!]) { wards(after: $after, before: $before, order: $order) { __typename totalCount pageInfo { __typename endCursor hasNextPage hasPreviousPage startCursor } edges { __typename cursor } nodes { __typename id publicInformation { __typename photo { __typename url(asAttachment: false) } name { __typename displayName } } } } }"#
     ))
 
   public var after: GraphQLNullable<String>
   public var before: GraphQLNullable<String>
+  public var order: GraphQLNullable<[WardSortInput]>
 
   public init(
     after: GraphQLNullable<String>,
-    before: GraphQLNullable<String>
+    before: GraphQLNullable<String>,
+    order: GraphQLNullable<[WardSortInput]>
   ) {
     self.after = after
     self.before = before
+    self.order = order
   }
 
   public var __variables: Variables? { [
     "after": after,
-    "before": before
+    "before": before,
+    "order": order
   ] }
 
   public struct Data: PomochAPI.SelectionSet {
@@ -34,7 +38,8 @@ public class WardsQuery: GraphQLQuery {
     public static var __selections: [ApolloAPI.Selection] { [
       .field("wards", Wards?.self, arguments: [
         "after": .variable("after"),
-        "before": .variable("before")
+        "before": .variable("before"),
+        "order": .variable("order")
       ]),
     ] }
 

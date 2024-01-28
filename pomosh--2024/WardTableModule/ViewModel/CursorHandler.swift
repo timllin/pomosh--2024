@@ -34,7 +34,6 @@ final class CursorHandler {
         self.beforeCursor = cursorsList[(offset+limit)%(totalCount-1)]
 
         self.isLastPage = false
-        print(self.afterCursor, self.beforeCursor)
     }
 
     public func moveCursors(pageInfo: WardsQuery.Data.Wards.PageInfo?) {

@@ -67,11 +67,9 @@ extension ViewController: UITableViewDelegate & UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let isLastPage = viewModel.cursorHandler?.isLastPage else {return}
-        if indexPath.row == viewModel.wards.count - 5 && !isLastPage {
+        if indexPath.row == viewModel.wards.count - 5 {
             viewModel.loadWardsWindow()  { [weak self] state in
                 if state { self?.mainView.tableView.reloadData() }
-                print(self?.viewModel.wards.count)
             }
         }
     }

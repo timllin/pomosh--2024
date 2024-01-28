@@ -1,5 +1,5 @@
-query Wards($after: String, $before: String) {
-    wards(after: $after, before: $before) {
+query Wards($after: String, $before: String, $order: [WardSortInput!]) {
+    wards(after: $after, before: $before, order: $order) {
         totalCount
         pageInfo {
             endCursor
