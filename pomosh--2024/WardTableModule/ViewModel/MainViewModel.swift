@@ -58,7 +58,6 @@ final class MainViewModel {
                 print("Failure! Error: \(error)")
             }
         }
-
     }
 
     public func loadAllWards(completion: ((Bool) -> Void)? = nil) {
@@ -71,7 +70,6 @@ final class MainViewModel {
             }
         }
     }
-
 
     public func getImageFor(ward: Ward, completion: @escaping (Result<UIImage, Error>) -> Void) {
         if let image = cachedImages[ward.getId()] {
